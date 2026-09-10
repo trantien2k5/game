@@ -1,0 +1,1309 @@
+/* The application owns the viewport. Only long panel content can scroll. */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+#app {
+  --rail-width: 72px;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.topbar {
+  height: 66px;
+  min-height: 0;
+  padding: 8px 22px;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+.brand-mark {
+  width: 35px;
+  height: 39px;
+}
+.brand strong {
+  font-size: 25px;
+}
+.brand small {
+  font-size: 7px;
+}
+.resource-bar {
+  min-width: 0;
+  gap: 22px;
+}
+.header-actions {
+  gap: 3px;
+  padding-left: 12px;
+}
+.header-actions .icon-button {
+  width: 34px;
+  height: 36px;
+}
+.header-actions .save-failed .icon {
+  color: #a45f48;
+}
+.game-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: var(--rail-width) minmax(0, 1fr) 306px;
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+}
+.navigation {
+  position: static;
+  grid-column: 1;
+  grid-row: 1;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 14px 5px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  border: 0;
+  border-right: 1px solid var(--line);
+}
+.nav-main,
+.nav-bottom {
+  gap: 8px;
+  flex-direction: column;
+  flex: 0 1 auto;
+}
+.nav-button {
+  width: 60px;
+  min-height: 54px;
+  height: 54px;
+  font-size: 9px;
+  flex: 0 0 auto;
+}
+.nav-button.active::before {
+  display: none;
+}
+.nav-leaf {
+  display: none;
+}
+.farm-main {
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: 12px;
+  padding: 16px 22px 12px;
+  overflow: hidden;
+}
+.farm-heading {
+  margin: 0;
+  min-width: 0;
+}
+.farm-heading h1 {
+  font-size: 26px;
+  margin-top: 5px;
+}
+.world-section {
+  min-height: 0;
+  min-width: 0;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 39px minmax(0, 1fr) 42px;
+}
+.world-top {
+  position: static;
+  padding: 5px 10px;
+  min-height: 0;
+}
+.world-tools {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  gap: 3px;
+}
+.world-tools .icon-button {
+  width: 30px;
+  height: 29px;
+}
+.world-scroll {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+.world {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+.farm-world {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  display: block;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.world-bottom {
+  position: static;
+  min-width: 0;
+  min-height: 0;
+  padding: 3px 10px;
+  gap: 8px;
+}
+.plot-context {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  max-width: 100%;
+}
+.plot-context > span:last-child {
+  min-width: 0;
+}
+.plot-context small {
+  font-size: 10px;
+}
+.context-icon {
+  width: 28px;
+  height: 30px;
+}
+.context-item {
+  width: 30px;
+  height: 34px;
+  flex-shrink: 0;
+}
+.world-legend {
+  right: 9px;
+  left: auto;
+  bottom: 6px;
+  gap: 5px;
+}
+.world-bottom {
+  padding-right: 213px;
+}
+.weather-caption {
+  display: none;
+}
+.planting-section {
+  padding: 0;
+  min-width: 0;
+}
+.planting-heading {
+  margin: 0 0 7px;
+  min-height: 30px;
+}
+.tool-button {
+  min-height: 28px;
+  font-size: 10px;
+}
+.seed-tray {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+.seed {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  grid-template-rows: 17px 22px 16px;
+  align-items: center;
+  column-gap: 3px;
+  min-height: 68px;
+  height: 68px;
+  padding: 5px 7px;
+  text-align: left;
+}
+.seed-top {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  padding: 0;
+}
+.seed-art {
+  grid-column: 1;
+  grid-row: 2 / 4;
+  width: 35px;
+  height: 40px;
+  margin: 0;
+}
+.seed strong {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 10px;
+  line-height: 1.2;
+}
+.seed-detail {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0;
+  font-size: 8px;
+  white-space: normal;
+  line-height: 1.2;
+}
+.seed:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.quest-strip {
+  min-height: 48px;
+  height: 48px;
+  padding: 5px 0 0;
+  margin: 0;
+  border-bottom: 0;
+  gap: 10px;
+}
+.quest-emblem {
+  width: 32px;
+  height: 32px;
+}
+.quest-copy small {
+  font-size: 7px;
+}
+.quest-copy strong {
+  font-size: 12px;
+  margin-top: 2px;
+}
+.quest-copy > span {
+  font-size: 9px;
+  margin-top: 2px;
+}
+.quest-progress {
+  min-width: 44px;
+}
+.quest-strip > .button {
+  height: 32px;
+  min-height: 32px;
+  padding: 6px 10px;
+  font-size: 10px;
+}
+.side-panel {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border-top: 0;
+  border-left: 1px solid var(--line);
+}
+.panel-toolbar {
+  display: none;
+}
+#panel-content {
+  flex: 1;
+  min-height: 0;
+  padding: 22px 18px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #b2c59c transparent;
+  scroll-padding-block: 12px;
+}
+#panel-content:focus-visible {
+  outline-offset: -3px;
+}
+.toasts {
+  bottom: 12px;
+  max-width: min(540px, calc(100% - 28px));
+}
+dialog {
+  overscroll-behavior: contain;
+}
+
+/* On compact screens, tabs occupy the same workspace as the farm. */
+.single-panel .game-shell {
+  grid-template-columns: var(--rail-width) minmax(0, 1fr);
+}
+.single-panel .side-panel {
+  display: none;
+  grid-column: 2;
+  border-left: 0;
+}
+.single-panel.panel-open .side-panel {
+  display: flex;
+}
+.single-panel.panel-open .farm-main {
+  visibility: hidden;
+}
+.single-panel .panel-toolbar {
+  display: flex;
+  padding: 5px 15px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.panel-return {
+  min-height: 32px;
+  padding: 5px 8px;
+  font-size: 11px;
+}
+.single-panel #panel-content {
+  padding: 18px 22px;
+}
+.single-panel .panel-header {
+  margin-bottom: 17px;
+}
+.single-panel .orders-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.single-panel .customer {
+  flex-wrap: nowrap;
+}
+.single-panel .customer .icon-button {
+  display: flex;
+}
+.single-panel .order-bottom {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.single-panel .order-bottom .button {
+  min-width: 0;
+  width: auto;
+}
+.single-panel .recipe-list,
+.single-panel .inventory-list,
+.single-panel .upgrade-list,
+.single-panel .chapters,
+.single-panel .level-road {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+}
+.single-panel .expansion-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.single-panel .expansion {
+  flex-direction: column;
+}
+.single-panel .area-picture {
+  width: 100%;
+  height: 68px;
+  flex-direction: row;
+}
+.single-panel .production-queue {
+  max-width: 500px;
+}
+.single-panel .building-tabs {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding-bottom: 12px;
+}
+.single-panel .building-tab {
+  padding: 9px;
+}
+.single-panel .building-tab > span {
+  font-size: 10px;
+}
+.single-panel .neighbor-note {
+  display: none;
+}
+.single-panel .market-note {
+  max-width: 440px;
+  margin-top: 18px;
+  padding: 14px 0;
+}
+
+@media (max-width: 1250px) {
+  .game-shell {
+    grid-template-columns: var(--rail-width) minmax(0, 1fr) 278px;
+  }
+  .topbar {
+    padding-inline: 16px;
+    gap: 12px;
+  }
+  .resource-bar {
+    gap: 16px;
+  }
+  .level-resource {
+    min-width: 145px;
+  }
+  .farm-main {
+    padding: 12px 16px 10px;
+    gap: 9px;
+  }
+  .farm-heading h1 {
+    font-size: 23px;
+  }
+  .seed {
+    grid-template-columns: 28px minmax(0, 1fr);
+    padding-inline: 5px;
+    column-gap: 2px;
+  }
+  .seed-art {
+    width: 28px;
+    height: 37px;
+  }
+  .seed strong {
+    font-size: 9px;
+  }
+  .seed-detail {
+    font-size: 7px;
+  }
+  .seed-tray {
+    gap: 5px;
+  }
+  .world-bottom {
+    padding-right: 10px;
+  }
+  .world-legend {
+    display: none;
+  }
+}
+
+@media (max-height: 750px) and (min-width: 601px) {
+  .topbar {
+    height: 55px;
+    padding-block: 5px;
+  }
+  .brand strong {
+    font-size: 23px;
+  }
+  .brand small {
+    display: none;
+  }
+  .brand-mark {
+    width: 32px;
+    height: 35px;
+  }
+  .farm-main {
+    gap: 8px;
+    padding-block: 10px 8px;
+  }
+  .farm-heading .eyebrow {
+    display: none;
+  }
+  .farm-heading h1 {
+    margin: 0;
+    font-size: 22px;
+  }
+  .weather-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .world-section {
+    grid-template-rows: 33px minmax(0, 1fr) 34px;
+  }
+  .plot-context small {
+    font-size: 9px;
+  }
+  .context-icon {
+    width: 24px;
+    height: 26px;
+  }
+  .context-item {
+    width: 26px;
+    height: 29px;
+  }
+  .quest-strip {
+    height: 39px;
+    min-height: 39px;
+  }
+  .quest-copy {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 8px;
+    align-items: baseline;
+  }
+  .quest-copy small {
+    grid-column: 1;
+  }
+  .quest-copy strong {
+    grid-column: 2;
+    margin: 0;
+  }
+  .quest-copy > span {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  #app {
+    --rail-width: 54px;
+  }
+  .topbar {
+    height: 45px;
+    padding: 4px 10px;
+    gap: 10px;
+  }
+  .brand {
+    gap: 6px;
+    order: 0;
+  }
+  .brand strong {
+    font-size: 20px;
+  }
+  .brand small {
+    display: none;
+  }
+  .brand-mark {
+    width: 27px;
+    height: 30px;
+  }
+  .brand-mark .icon {
+    width: 22px;
+    height: 22px;
+  }
+  .resource-bar {
+    order: 0;
+    width: auto;
+    flex: 1;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  .resource {
+    min-width: 0;
+    gap: 5px;
+  }
+  .resource > .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .resource strong {
+    font-size: 16px;
+  }
+  .resource small {
+    font-size: 6px;
+  }
+  .resource em {
+    font-size: 9px;
+  }
+  .level-resource {
+    min-width: 102px;
+    max-width: 145px;
+    margin: 0;
+  }
+  .level-resource small {
+    font-size: 0;
+  }
+  .level-resource small::before {
+    content: 'CẤP VƯỜN';
+    font-size: 6px;
+  }
+  .level-badge {
+    width: 26px;
+    height: 29px;
+    font-size: 14px;
+  }
+  .xp-line {
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .xp-line .progress {
+    min-width: 30px;
+  }
+  .xp-line > span {
+    font-size: 7px;
+  }
+  .header-actions {
+    order: 0;
+    margin: 0;
+    padding-left: 4px;
+    gap: 0;
+  }
+  .header-actions .icon-button {
+    width: 32px;
+    height: 34px;
+  }
+  .header-actions .icon {
+    width: 17px;
+    height: 17px;
+  }
+  .navigation {
+    padding: 5px 3px;
+    gap: 3px;
+  }
+  .nav-main,
+  .nav-bottom {
+    gap: 3px;
+  }
+  .nav-bottom {
+    display: flex;
+  }
+  .nav-button {
+    width: 46px;
+    height: 39px;
+    min-height: 39px;
+    gap: 3px;
+    font-size: 7px;
+  }
+  .nav-button > .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .nav-bottom > .icon-button {
+    display: none;
+  }
+  .farm-main {
+    gap: 5px;
+    padding: 6px 10px;
+    grid-template-columns: minmax(0, 1fr) 140px;
+    grid-template-rows: auto minmax(0, 1fr) 26px;
+  }
+  .farm-heading {
+    min-height: 24px;
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .farm-heading .eyebrow {
+    display: none;
+  }
+  .farm-heading h1 {
+    margin: 0;
+    font-size: 18px;
+  }
+  .weather {
+    gap: 5px;
+  }
+  .weather-icon {
+    display: none;
+  }
+  .weather > span:last-child {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .weather strong,
+  .weather small {
+    font-size: 9px;
+    margin: 0;
+  }
+  .world-section {
+    grid-template-rows: 30px minmax(0, 1fr) 26px;
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .world-top {
+    padding: 0 7px;
+  }
+  .world-tools .icon-button {
+    width: 30px;
+    height: 29px;
+  }
+  .world-bottom {
+    padding: 0 8px;
+  }
+  .plot-context {
+    gap: 6px;
+  }
+  .plot-context > span:last-child {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .plot-context strong {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .plot-context small {
+    font-size: 9px;
+    margin: 0;
+    max-width: none;
+  }
+  .context-icon,
+  .context-item {
+    display: none;
+  }
+  .world-legend {
+    display: none;
+  }
+  .planting-section {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 28px minmax(0, 1fr);
+    gap: 6px;
+    min-height: 0;
+  }
+  .planting-heading {
+    margin: 0;
+    min-height: 0;
+  }
+  .section-caption {
+    display: none;
+  }
+  .tool-switch {
+    flex-direction: row;
+    gap: 0;
+    width: 100%;
+    padding: 1px;
+  }
+  .tool-button {
+    min-height: 25px;
+    height: 25px;
+    padding: 3px;
+    justify-content: center;
+    flex: 1;
+  }
+  .tool-button .icon {
+    width: 16px;
+    height: 16px;
+  }
+  .tool-button > span {
+    display: none;
+  }
+  .seed-tray {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    min-height: 0;
+  }
+  .seed {
+    height: 100%;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 10px minmax(12px, 1fr) 20px 10px;
+    padding: 3px;
+    text-align: center;
+  }
+  .seed-top {
+    grid-column: 1;
+    grid-row: 1;
+    height: 10px;
+  }
+  .seed-top .family-label {
+    font-size: 6px;
+    padding: 1px 3px;
+  }
+  .seed-top > .icon {
+    width: 9px;
+    height: 9px;
+  }
+  .seed-art {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+    width: 32px;
+    height: 100%;
+    max-height: 43px;
+    min-height: 0;
+  }
+  .seed strong {
+    grid-column: 1;
+    grid-row: 3;
+    font-size: 9px;
+    line-height: 1.1;
+  }
+  .seed-detail {
+    grid-column: 1;
+    grid-row: 4;
+    font-size: 7px;
+    white-space: nowrap;
+  }
+  .quest-strip {
+    height: 26px;
+    min-height: 26px;
+    padding: 0;
+    gap: 8px;
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+  .quest-emblem {
+    display: none;
+  }
+  .quest-copy {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+  }
+  .quest-copy small {
+    font-size: 7px;
+    flex-shrink: 0;
+  }
+  .quest-copy strong {
+    font-size: 10px;
+    margin: 0;
+  }
+  .quest-copy > span {
+    font-size: 8px;
+    margin: 0;
+  }
+  .quest-progress {
+    min-width: 35px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .quest-progress > span {
+    font-size: 11px;
+  }
+  .quest-progress > .progress {
+    width: 28px;
+    margin: 0;
+  }
+  .quest-strip > .button {
+    min-height: 25px;
+    height: 25px;
+    width: auto;
+    padding: 3px 7px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+  .quest-strip > .button > .icon {
+    width: 13px;
+    height: 13px;
+  }
+  .quest-done {
+    width: 20px;
+    height: 20px;
+  }
+  .single-panel .panel-toolbar {
+    padding: 2px 12px;
+  }
+  .panel-return {
+    min-height: 30px;
+    font-size: 10px;
+  }
+  .single-panel #panel-content {
+    padding: 12px 18px;
+  }
+  .single-panel .panel-header .eyebrow {
+    display: none;
+  }
+  .single-panel .panel-header {
+    margin-bottom: 12px;
+  }
+  .single-panel .panel-title h2 {
+    font-size: 22px;
+  }
+  .single-panel .panel-header p {
+    margin-top: 5px;
+  }
+  .single-panel .order {
+    padding: 10px;
+  }
+  .single-panel .customer .portrait {
+    width: 30px;
+    height: 30px;
+  }
+  .single-panel .customer strong {
+    font-size: 11px;
+  }
+  .single-panel .customer small {
+    font-size: 9px;
+  }
+  .single-panel .customer .icon-button {
+    min-width: 26px;
+    width: 26px;
+    height: 28px;
+    min-height: 28px;
+  }
+  .single-panel .order-items {
+    margin-block: 8px;
+  }
+  .single-panel .order-bottom .button {
+    min-height: 33px;
+    padding: 6px 9px;
+  }
+  .toasts {
+    left: auto;
+    right: 12px;
+    top: 49px;
+    bottom: auto;
+    transform: none;
+    width: max-content;
+    max-width: calc(100% - 75px);
+  }
+  .toast {
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+  dialog {
+    max-height: calc(100dvh - 20px);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 380px) {
+  .farm-heading {
+    display: none;
+  }
+  .farm-main {
+    grid-template-rows: minmax(0, 1fr) 26px;
+  }
+  .world-section,
+  .planting-section {
+    grid-row: 1;
+  }
+  .quest-strip {
+    grid-row: 2;
+  }
+  .quest-copy > span {
+    display: none;
+  }
+  .quest-copy strong {
+    font-size: 10px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 740px) {
+  .topbar {
+    gap: 6px;
+  }
+  .brand > span:last-child {
+    display: none;
+  }
+  .resource-bar {
+    justify-content: space-around;
+    gap: 8px;
+  }
+  .level-resource {
+    min-width: 104px;
+  }
+  .family-label {
+    font-size: 6px;
+    padding: 1px 3px;
+  }
+  .single-panel .orders-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .single-panel .recipe-list {
+    gap: 9px;
+  }
+  .world-bottom .plot-context small {
+    font-size: 8px;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 1100px) {
+  #app {
+    --rail-width: 64px;
+  }
+  .topbar {
+    height: auto;
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .brand {
+    order: 0;
+  }
+  .header-actions {
+    order: 1;
+    margin-left: auto;
+    border: 0;
+    padding: 0;
+  }
+  .resource-bar {
+    order: 2;
+    width: 100%;
+    flex: 1 0 100%;
+    justify-content: space-between;
+  }
+  .farm-heading h1 {
+    font-size: 23px;
+  }
+  .world-bottom {
+    padding-right: 10px;
+  }
+  .world-legend {
+    display: none;
+  }
+  .seed {
+    grid-template-columns: 1fr;
+    grid-template-rows: 14px 35px 15px 13px;
+    height: 86px;
+    min-height: 86px;
+    text-align: center;
+    padding: 4px;
+  }
+  .seed-top {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .seed-art {
+    grid-column: 1;
+    grid-row: 2;
+    width: 34px;
+    height: 35px;
+    justify-self: center;
+  }
+  .seed strong {
+    grid-column: 1;
+    grid-row: 3;
+    font-size: 10px;
+  }
+  .seed-detail {
+    grid-column: 1;
+    grid-row: 4;
+    font-size: 8px;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 600px) {
+  .game-shell,
+  .single-panel .game-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) 58px;
+  }
+  .navigation {
+    grid-row: 2;
+    grid-column: 1;
+    flex-direction: row;
+    padding: 3px 6px;
+    border-right: 0;
+    border-top: 1px solid var(--line);
+  }
+  .nav-main {
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-between;
+    gap: 3px;
+  }
+  .nav-button {
+    min-width: 0;
+    width: auto;
+    height: 50px;
+    min-height: 50px;
+    flex: 1;
+    font-size: 8px;
+    gap: 4px;
+  }
+  .nav-button > .icon {
+    width: 21px;
+    height: 21px;
+  }
+  .nav-bottom {
+    display: none;
+  }
+  .farm-main,
+  .single-panel .side-panel {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .farm-main {
+    padding: 9px 10px;
+    gap: 8px;
+  }
+  .topbar {
+    padding: 8px 12px;
+    gap: 9px;
+  }
+  .brand strong {
+    font-size: 23px;
+  }
+  .brand small {
+    display: none;
+  }
+  .brand-mark {
+    width: 30px;
+    height: 33px;
+  }
+  .brand-mark .icon {
+    width: 25px;
+    height: 25px;
+  }
+  .header-actions .icon-button {
+    width: 34px;
+    height: 36px;
+  }
+  .resource-bar {
+    gap: 8px;
+  }
+  .resource {
+    min-width: 0;
+    gap: 5px;
+  }
+  .resource strong {
+    font-size: 16px;
+  }
+  .resource > .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .resource small {
+    font-size: 6px;
+  }
+  .level-resource {
+    min-width: 0;
+    flex: 1;
+    margin: 0;
+  }
+  .level-resource small {
+    font-size: 0;
+  }
+  .level-resource small::before {
+    content: 'CẤP VƯỜN';
+    font-size: 6px;
+  }
+  .level-badge {
+    width: 25px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .xp-line .progress {
+    min-width: 22px;
+  }
+  .xp-line > span {
+    font-size: 7px;
+  }
+  .farm-heading .eyebrow {
+    display: none;
+  }
+  .farm-heading h1 {
+    font-size: 20px;
+    margin: 0;
+    max-width: none;
+  }
+  .weather strong,
+  .weather small {
+    font-size: 8px;
+  }
+  .weather-icon {
+    display: none;
+  }
+  .world-section {
+    grid-template-rows: 34px minmax(0, 1fr) 43px;
+  }
+  .plot-context small {
+    font-size: 9px;
+    max-width: none;
+    line-height: 1.3;
+  }
+  .plot-context strong {
+    font-size: 10px;
+  }
+  .world-bottom {
+    padding-inline: 7px;
+  }
+  .planting-heading {
+    min-height: 30px;
+    gap: 5px;
+    margin-bottom: 6px;
+  }
+  .section-caption h2 {
+    font-size: 10px;
+  }
+  .tool-button {
+    font-size: 8px;
+    padding: 5px;
+  }
+  .seed-tray {
+    gap: 3px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .seed {
+    grid-template-rows: 12px 29px 23px 17px;
+    height: 89px;
+    min-height: 89px;
+    padding: 3px 2px;
+  }
+  .seed-art {
+    width: 28px;
+    height: 29px;
+  }
+  .seed strong {
+    font-size: 9px;
+  }
+  .seed-detail {
+    font-size: 7px;
+  }
+  .seed-top .family-label {
+    font-size: 6px;
+    padding: 1px 3px;
+  }
+  .seed-top > .icon {
+    width: 9px;
+    height: 9px;
+  }
+  .quest-strip {
+    height: 47px;
+    min-height: 47px;
+    gap: 7px;
+  }
+  .quest-emblem {
+    display: none;
+  }
+  .quest-copy small {
+    font-size: 6px;
+  }
+  .quest-copy strong {
+    font-size: 11px;
+  }
+  .quest-copy > span {
+    font-size: 8px;
+    line-height: 1.3;
+  }
+  .quest-progress {
+    min-width: 28px;
+  }
+  .quest-progress > span {
+    font-size: 12px;
+  }
+  .quest-strip > .button {
+    font-size: 0;
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    padding: 0;
+    gap: 0;
+  }
+  .quest-strip > .button .coin-value {
+    display: none;
+  }
+  .single-panel #panel-content {
+    padding: 16px 14px;
+  }
+  .single-panel .panel-toolbar {
+    padding: 4px 9px;
+  }
+  .single-panel .orders-list,
+  .single-panel .recipe-list,
+  .single-panel .inventory-list,
+  .single-panel .upgrade-list,
+  .single-panel .chapters,
+  .single-panel .level-road,
+  .single-panel .expansion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .single-panel .expansion {
+    flex-direction: row;
+  }
+  .single-panel .area-picture {
+    width: 84px;
+    height: auto;
+    flex-direction: column;
+  }
+  .single-panel .order-bottom .button {
+    min-width: 110px;
+  }
+  .toasts {
+    bottom: calc(67px + env(safe-area-inset-bottom));
+  }
+}
