@@ -4,6 +4,11 @@
   "private": true,
   "type": "module",
   "description": "An original browser farming game about living soil networks.",
+  "homepage": "https://trantien2k5.github.io/game",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trantien2k5/game.git"
+  },
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",

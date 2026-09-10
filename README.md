@@ -1,10 +1,13 @@
 # 🌾 Mạch Vườn (Living Soil Farming)
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-trantien2k5.github.io%2Fgame-success.svg?logo=github&style=flat)](https://trantien2k5.github.io/game)
 [![Node Version](https://img.shields.io/badge/Node.js-20%2B-brightgreen.svg)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-ISC-blue.svg)](LICENSE)
 [![Vanilla JS](https://img.shields.io/badge/Tech-Vanilla%20JS%20%7C%20SVG%20%7C%20CSS-orange.svg)](<>)
 [![State Engine](https://img.shields.io/badge/Save-Local%20v1%20%7C%20Web%20Locks-success.svg)](<>)
 
+> 🎮 **Trải nghiệm trực tiếp tại:** **[https://trantien2k5.github.io/game](https://trantien2k5.github.io/game)**
+>
 > **Mạch Vườn** là tựa game nông trại chơi đơn thuần Việt, chạy trực tiếp trên trình duyệt web. Toàn bộ hình ảnh trong game được vẽ nguyên bản bằng **Vector SVG**, kết hợp cùng giao diện điều khiển hiện đại, âm thanh thủ tục (Web Audio) và cơ chế **Mạch Đất Sống** độc đáo.
 
 ---

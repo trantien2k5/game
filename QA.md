@@ -2,6 +2,7 @@
 
 > **Tài liệu kiểm định & Báo cáo chất lượng toàn diện**  
 > **Dự án:** Mạch Vườn (Living Soil Farming)  
+> **Trải nghiệm thực tế:** [https://trantien2k5.github.io/game](https://trantien2k5.github.io/game)  
 > **Mục tiêu:** Xác minh độ ổn định logic, tính toàn vẹn dữ liệu lưu trữ, độ cân bằng kinh tế và độ tương thích giao diện đa thiết bị.
 
 ---

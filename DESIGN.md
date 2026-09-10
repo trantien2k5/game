@@ -1,6 +1,7 @@
 # 📜 Tài Liệu Thiết Kế Trò Chơi (GDD) — Mạch Vườn
 
 > **Tên dự án:** Mạch Vườn (Living Soil Farming)  
+> **Trải nghiệm trực tuyến:** [https://trantien2k5.github.io/game](https://trantien2k5.github.io/game)  
 > **Thể loại:** Trò chơi mô phỏng nông trại chơi đơn (Single-player Farm Simulation)  
 > **Nền tảng:** Trình duyệt Web (Desktop, Tablet, Mobile) — Thuần Vanilla JS, SVG & CSS  
 > **Ngôn ngữ:** Tiếng Việt (Toàn bộ giao diện, cốt truyện và nội dung)

@@ -1,4 +1,4 @@
-import '../node_modules/lucide/dist/umd/lucide.min.js';
+import '../assets/lucide.min.js';
 
 const cache = new Map();
 export function icon(name, cls = '') {
